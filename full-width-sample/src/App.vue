@@ -1,26 +1,33 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <FullWidthNumberField
+    label="価格"
+    :value="price"
+    @update:value="price = $event"
+    :min="0"
+    :max="1000000"
+    required
+    name="price"
+    placeholder="全角で価格を入力"
+    helper-text="0から1,000,000の範囲"
+    :allow-decimal="true"
+  />
+  <FullWidthNumberField
+    label="数量"
+    :value="quantity"
+    @update:value="quantity = $event"
+    :min="1"
+    required
+    name="quantity"
+    placeholder="数量を入力"
+    helper-text="1以上の整数を入力"
+    :allow-decimal="false"
+  />
 </template>
 
-<script>
-import HelloWorld from './components/HelloWorld.vue'
+<script setup>
+import { ref } from 'vue';
+import FullWidthNumberField from './components/FullWidthNumberField.vue';
 
-export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
-}
+const price = ref('');
+const quantity = ref('');
 </script>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
